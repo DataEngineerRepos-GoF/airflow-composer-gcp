@@ -1,0 +1,7 @@
+{
+    movies(func: has(release_date)) {
+    name
+    director { name }
+    starring { name }
+     }
+    }

@@ -11,7 +11,7 @@ default_args = {
 }
 
 with DAG(
-    dag_id='dgraph_test_v1',
+    dag_id='dgraph_test_v4',
     default_args = default_args,
     description='gcp composer',
     start_date=datetime(2023,5,12,2),

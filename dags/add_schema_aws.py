@@ -11,7 +11,7 @@ default_args = {
 }
 
 with DAG(
-    dag_id='dgraph_test_v2',
+    dag_id='dgraph_test_v3',
     default_args = default_args,
     description='gcp composer',
     start_date=datetime(2023,5,30),
@@ -19,15 +19,8 @@ with DAG(
 ) as dag:
     task1 = BashOperator(
         task_id='first_task',
-        bash_command= "curl -X POST http://44.211.75.97:8000/alter -d '{'drop_all': true}'"
+        bash_command= "curl -X POST http://44.211.75.97:8000/alter -d 'type Person { name: String! @search(by: [fulltext]), age: Int, country: String}'"
         
     )
 
-    task2 = BashOperator(
-        task_id = 'second_task',      
-        bash_command = "curl -H 'Content-Type: application/dql' -X POST http://44.211.75.97:8000/query -d $' { movies(func: has(release_date)) { name,  director { name },    starring { name } \
-     } }'"
-    )
-
-    task1.set_downstream(task2)
-    
+    task1
